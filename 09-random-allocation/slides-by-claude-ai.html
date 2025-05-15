@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חלוקה בהגרלה</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            direction: rtl;
+        }
+        
+        .presentation-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            padding: 40px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin: 10px;
+            overflow-y: auto;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            font-size: 2.4em;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        
+        h3 {
+            color: #e74c3c;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .formula {
+            direction: ltr;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5em;
+        }
+        
+        .theorem {
+            background: #e8f6f3;
+            border: 2px solid #1abc9c;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .proof {
+            background: #fef9e7;
+            border: 2px solid #f1c40f;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .example {
+            background: #fdf2e9;
+            border: 2px solid #e67e22;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .definition {
+            background: #f4f6f7;
+            border: 2px solid #95a5a6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #2980b9;
+        }
+        
+        .nav-btn:disabled {
+            background: #7f8c8d;
+            cursor: not-allowed;
+        }
+        
+        .slide-counter {
+            color: white;
+            font-size: 18px;
+            margin: 0 20px;
+        }
+        
+        ul {
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 1.3em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            direction: rtl;
+            font-size: 1.3em;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-right: 3px solid #3498db;
+            padding-right: 15px;
+            margin: 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>חלוקה בהגרלה</h1>
+            <div class="quote">
+                "אַךְ בְּגוֹרָל יֵחָלֵק אֶת הָאָרֶץ, לִשְׁמוֹת מַטּוֹת אֲבֹתָם יִנְחָלוּ" (במדבר כו נה)
+            </div>
+            <p><strong>הקדמה:</strong> הגרלה היא אמצעי פשוט ונוח לחלק חפצים בדידים. כשצריך לחלק חפץ אחד בין שני אנשים ללא שיתוף וללא שימוש בכסף, הפתרון ההוגן היחיד הוא להטיל מטבע כך שכל אחד מהשחקנים יקבל את החפץ בהסתברות 0.5.</p>
+            <p><strong>שימושים היסטוריים:</strong></p>
+            <ul>
+                <li>יהושע בן־נון השתמש בגורל לחלוקת ארץ ישראל</li>
+                <li>סורטיציה (sortition) באתונה העתיקה</li>
+                <li>חלוקת משימות בבית המקדש</li>
+            </ul>
+            <p><strong>שימושים עכשוויים:</strong> מחיר למשתכן, חלוקת מגרשים, תורנויות בצה"ל, תחרויות ספורט, מושבעים</p>
+        </div>
+
+        <!-- Slide 2: Part 1 Introduction -->
+        <div class="slide">
+            <h1>חלק 1: תכונות של הגרלות</h1>
+            <p>כשיש חפץ אחד ושני שחקנים (עם זכויות שוות), יש רק הגרלה אחת שאפשר לקרוא לה "הגרלה הוגנת" - לתת את החפץ בהסתברות 50% לאחד משני השחקנים.</p>
+            <p><strong>השאלה המרכזית:</strong> מה עושים כשיש הרבה חפצים והרבה שחקנים?</p>
+            <p><strong>המטרה:</strong> לתרגם את תנאי ההוגנות והיעילות להגרלות בין חלוקות שונות</p>
+        </div>
+
+        <!-- Slide 3: Fairness - Expectation -->
+        <div class="slide">
+            <h2>הוגנות - מושג התוחלת</h2>
+            <div class="definition">
+                <strong>הגדרה:</strong> תוחלת של משתנה מקרי היא הממוצע המשוקלל של הערכים האפשריים של המשתנה, כאשר המשקלים הם ההסתברויות השונות לקבל כל אחד מהערכים.
+            </div>
+            
+            <div class="example">
+                <strong>דוגמה:</strong> שחקן זורק קוביה הוגנת, ומקבל שקלים בהתאם למספר שיצא בקוביה. מהי תוחלת הרווח שלו?
+                <div class="formula">
+                    1/6 × 1 + 1/6 × 2 + 1/6 × 3 + 1/6 × 4 + 1/6 × 5 + 1/6 × 6 = 3.5
+                </div>
+            </div>
+            
+            <p>במקרה של חלוקה בהגרלה, המשתנים המקריים המעניינים אותנו הם הערכים שמייחסים השחקנים לסלים השונים.</p>
+            <div class="formula">
+                תוחלת הערך של שחקן i: E[v_i(x_i)]
+            </div>
+        </div>
+
+        <!-- Slide 4: Ex-ante Fairness -->
+        <div class="slide">
+            <h2>הוגנות לכתחילה (Ex-ante Fairness)</h2>
+            
+            <div class="definition">
+                <strong>הגדרה:</strong> חלוקה אקראית נקראת:
+                <ul>
+                    <li><strong>פרופורציונלית לכתחילה</strong> - אם תוחלת הערך של כל שחקן היא לפחות 1/n מהערך שהוא מייחס לכל החפצים:
+                        <div class="formula">E[v_i(x_i)] ≥ v_i(All)/n</div>
+                    </li>
+                    <li><strong>ללא־קנאה לכתחילה</strong> - אם לכל שני שחקנים i, j:
+                        <div class="formula">E[v_i(x_i)] ≥ E[v_i(x_j)]</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>המשך הדוגמה:</strong> חפץ אחד ושני שחקנים
+                <p>שחקן א מייחס ערך V_a, שחקן ב מייחס ערך V_b</p>
+                <p>החפץ נמסר לשחקן א בהסתברות p ולשחקן ב בהסתברות 1-p</p>
+                <div class="formula">
+                    תוחלת הערך של שחקן א: p × V_a<br>
+                    תוחלת הערך של שחקן ב: (1-p) × V_b
+                </div>
+                <p>ההגרלה פרופורציונלית־לכתחילה אם p = 1/2</p>
+                <p>ההגרלה ללא־קנאה־לכתחילה אם p = 1/2</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Ex-post Fairness -->
+        <div class="slide">
+            <h2>הוגנות בדיעבד (Ex-post Fairness)</h2>
+            
+            <div class="definition">
+                <strong>הגדרה:</strong> חלוקה אקראית נקראת:
+                <ul>
+                    <li><strong>פרופורציונלית בדיעבד</strong> - אם בכל תוצאה של ההגרלה, הערך של כל שחקן הוא לפחות 1/n מהערך שהוא מייחס לכל החפצים</li>
+                    <li><strong>ללא־קנאה בדיעבד</strong> - אם בכל תוצאה של ההגרלה, לכל שני שחקנים i, j, הערך שמייחס i לסל שלו גדול לפחות כמו הערך שהוא מייחס לסל של j</li>
+                </ul>
+            </div>
+            
+            <div class="theorem">
+                <strong>משפט:</strong> הוגנות־בדיעבד היא דרישה חזקה יותר מהוגנות־לכתחילה:
+                <ul>
+                    <li>כל הגרלה פרופורציונלית־בדיעבד היא פרופורציונלית־לכתחילה, אבל לא להיפך</li>
+                    <li>כל הגרלה ללא־קנאה־בדיעבד היא ללא־קנאה־לכתחילה, אבל לא להיפך</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Proof of Ex-post to Ex-ante -->
+        <div class="slide">
+            <h2>הוכחה: מבדיעבד לכתחילה</h2>
+            
+            <div class="proof">
+                <strong>הוכחה (פרופורציונלית):</strong>
+                <p>כל הגרלה פרופורציונלית־בדיעבד היא פרופורציונלית־לכתחילה.</p>
+                <p>היות וההגרלה היא פרופורציונלית־בדיעבד אזי מתקיים <strong>לכל</strong> תוצאה אפשרית של ההגרלה כי:</p>
+                <div class="formula">v_i(x_i) ≥ v_i(All)/n</div>
+                <p>כדי לחשב את התוחלת, יש לעבור על כל הסלים שההגרלה עשויה לתת לשחקן i:</p>
+                <div class="formula">
+                    E[v_i(x_i)] = ∑_{x_i} P(x_i) × v_i(x_i)<br>
+                    ≥ ∑_{x_i} P(x_i) × v_i(All)/n<br>
+                    = v_i(All)/n × ∑_{x_i} P(x_i)<br>
+                    = v_i(All)/n × 1<br>
+                    = v_i(All)/n
+                </div>
+                <p>לכן תוחלת הערך של שחקן i היא לפחות v_i(All)/n</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Efficiency -->
+        <div class="slide">
+            <h2>יעילות</h2>
+            <p><strong>הבעיה:</strong> קל להשיג חלוקה הוגנת־לכתחילה - פשוט נבחר באקראי שחקן כלשהו בהסתברות אחידה (1/n לכל שחקן), וניתן לו את כל החפצים. אבל ההגרלה הזאת אינה יעילה.</p>
+            
+            <div class="example">
+                <p><strong>דוגמה:</strong> שני חיילים וחלוקת משמרות</p>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>משמרת יום</th>
+                        <th>משמרת לילה</th>
+                    </tr>
+                    <tr>
+                        <td><strong>אלי</strong></td>
+                        <td>-10</td>
+                        <td>-20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>בני</strong></td>
+                        <td>-20</td>
+                        <td>-10</td>
+                    </tr>
+                </table>
+                <p>אם בוחרים חייל אחד באקראי: תוחלת הערך = -15</p>
+                <p>אם אלי מקבל את משמרת היום ובני את משמרת הלילה: תוחלת הערך = -10</p>
+                <p>החלוקה השניה היא שיפור פארטו של הראשונה</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Efficiency Definitions -->
+        <div class="slide">
+            <h2>הגדרות יעילות</h2>
+            
+            <div class="definition">
+                <strong>הגדרה:</strong> חלוקה אקראית א נקראת <strong>שיפור־פארטו־לכתחילה</strong> של חלוקה אקראית ב, אם תוחלת הערך של חלק מהשחקנים גבוהה יותר בחלוקה א, ותוחלת הערך של שאר השחקנים גבוהה לפחות באותה מידה בחלוקה א.
+            </div>
+            
+            <div class="definition">
+                <strong>הגדרות יעילות:</strong>
+                <ul>
+                    <li><strong>יעילה לכתחילה (ex-ante efficient)</strong> - אם לא קיימת חלוקה אקראית שהיא שיפור־פארטו־לכתחילה שלה</li>
+                    <li><strong>יעילה בדיעבד (ex-post efficient)</strong> - אם כל תוצאה של ההגרלה היא חלוקה יעילה־פארטו</li>
+                </ul>
+            </div>
+            
+            <div class="theorem">
+                <strong>משפט מפתיע:</strong> כל הגרלה יעילה־לכתחילה היא יעילה־בדיעבד, אבל לא להיפך!
+                <p>(בניגוד לתכונות ההוגנות, כאן "לכתחילה" חזק יותר מ"בדיעבד")</p>
+            </div>
+            
+            <div class="proof">
+                <strong>הוכחה:</strong> נניח שהגרלה כלשהי אינה יעילה־בדיעבד, ונוכיח שאינה יעילה־לכתחילה. כיוון שההגרלה אינה יעילה־בדיעבד, קיימת חלוקה X שההגרלה מחזירה בהסתברות חיובית (p>0), וקיימת חלוקה Y שהיא שיפור־פארטו של X.
+                <p>נבנה הגרלה חדשה, הדומה להגרלה המקורית, פרט לכך שבמקום להחזיר את החלוקה X, היא מחזירה את החלוקה Y. בהגרלה החדשה, תוחלת הערך של כל השחקנים גדולה לפחות כמו בהגרלה המקורית, ועבור חלק מהשחקנים היא גדולה יותר. לכן, ההגרלה החדשה היא שיפור־פארטו של ההגרלה המקורית, ולכן ההגרלה המקורית אינה יעילה־לכתחילה.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Part 2 Introduction -->
+        <div class="slide">
+            <h1>חלק 2: חלוקת חפצים בהגרלה</h1>
+            
+            <h2>רדוקציה כללית</h2>
+            <p><strong>המטרה:</strong> להפוך בעיית חישוב הגרלה על חפצים בדידים לבעיית חלוקת משאבים רציפים</p>
+            
+            <div class="definition">
+                <strong>אלגוריתם הרדוקציה:</strong>
+                <ol>
+                    <li>התייחס לכל חפץ בדיד כאל משאב רציף בכמות 1</li>
+                    <li>הפעל אלגוריתם לחלוקת משאבים רציפים</li>
+                    <li>התייחס לשבר שכל שחקן מקבל מכל חפץ כאל הסתברות זכיה</li>
+                    <li>הגרל כל חפץ בין השחקנים בהתאם להסתברויות</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 10: Linear Programming for Lottery -->
+        <div class="slide">
+            <h2>תוכנית לינארית לחלוקה אגליטרית</h2>
+            
+            <div class="formula">
+                Maximize z<br><br>
+                subject to:<br>
+                v_i(x_i) ≥ z for all i<br>
+                Σ_i x_{i,g} = 1 for all g<br>
+                x_{i,g} ≥ 0 for all i, g
+            </div>
+            
+            <p><strong>פירוש המשתנים:</strong></p>
+            <ul>
+                <li>x_{i,g} = ההסתברות שחפץ g נמסר לשחקן i</li>
+                <li>לכל חפץ g, סכום ההסתברויות על פני כל השחקנים = 1</li>
+                <li>תוחלת הערך של שחקן i = Σ_g x_{i,g} × v_{i,g}</li>
+                <li>z = הערך האגליטרי (המינימום של תוחלות הערכים)</li>
+            </ul>
+            
+            <div class="theorem">
+                <strong>משפט:</strong> כל הגרלה לקסימין־אגליטרית־לכתחילה היא יעילה־לכתחילה (ולכן יעילה־בדיעבד).
+            </div>
+        </div>
+
+        <!-- Slide 11: Part 3 Introduction -->
+        <div class="slide">
+            <h1>חלק 3: השמה בהגרלה</h1>
+            
+            <h2>בעיות השמה (Assignment Problems)</h2>
+            <p><strong>הגדרה:</strong> בעיות חלוקה שבהן חשוב להבטיח שכל שחקן יקבל לכל היותר חפץ אחד</p>
+            
+            <p><strong>דוגמאות:</strong></p>
+            <ul>
+                <li>חלוקת חדרים בדירה שכורה בין דיירים</li>
+                <li>חלוקת מעונות לסטודנטים</li>
+                <li>חלוקת תורנויות - n תורנויות בין n אנשים</li>
+            </ul>
+            
+            <p><strong>האתגר המרכזי:</strong> איך להשיג חלוקה הוגנת ויעילה לכתחילה, ויחד עם זה, להבטיח שכל שחקן יקבל חפץ אחד בדיוק בוודאות?</p>
+        </div>
+
+        <!-- Slide 12: Assignment LP -->
+        <div class="slide">
+            <h2>תוכנית לינארית להשמה אגליטרית</h2>
+            
+            <div class="formula">
+                Maximize z<br><br>
+                subject to:<br>
+                v_i(x_i) ≥ z for all i<br>
+                Σ_i x_{i,g} = 1 for all g<br>
+                Σ_g x_{i,g} = 1 for all i<br>
+                x_{i,g} ≥ 0 for all i, g
+            </div>
+            
+            <p><strong>ההבדל מהחלוקה הרגילה:</strong> האילוץ הנוסף Σ_g x_{i,g} = 1 מבטיח שכל שחקן מקבל חפץ אחד בדיוק</p>
+            
+            <p><strong>הבעיה:</strong> איך לבצע את ההגרלות כך שנקבל השמה חוקית?</p>
+            <p>לא ניתן להגריל כל חפץ בנפרד - עלולה להתקבל השמה לא חוקית</p>
+        </div>
+
+        <!-- Slide 13: Assignment Example -->
+        <div class="slide">
+            <h2>דוגמה: השמת מעונות</h2>
+            
+            <p>ארבעה סוגי מעונות לארבעה סטודנטים:</p>
+            
+            <table>
+                <tr>
+                    <th></th>
+                    <th>בקתה</th>
+                    <th>צריף</th>
+                    <th>וילה</th>
+                    <th>מרתף</th>
+                </tr>
+                <tr>
+                    <td><strong>סטודנט א</strong></td>
+                    <td>0.7</td>
+                    <td>0.3</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><strong>סטודנט ב</strong></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0.7</td>
+                    <td>0.3</td>
+                </tr>
+                <tr>
+                    <td><strong>סטודנט ג</strong></td>
+                    <td>0.3</td>
+                    <td>0</td>
+                    <td>0.3</td>
+                    <td>0.4</td>
+                </tr>
+                <tr>
+                    <td><strong>סטודנט ד</strong></td>
+                    <td>0</td>
+                    <td>0.7</td>
+                    <td>0</td>
+                    <td>0.3</td>
+                </tr>
+            </table>
+            
+            <p>שימו לב: סכום כל שורה = 1, סכום כל עמודה = 1</p>
+            <p><strong>הבעיה:</strong> אם נגריל כל חפץ בנפרד, סטודנט א עלול לזכות גם בבקתה וגם בצריף!</p>
+        </div>
+
+        <!-- Slide 14: Graph Theory Solution -->
+        <div class="slide">
+            <h2>פתרון בעזרת תורת הגרפים</h2>
+            
+            <div class="definition">
+                <strong>גרף הצריכה:</strong> גרף דו־צדדי לא־מכוון שבו:
+                <ul>
+                    <li>הקודקודים בצד אחד: n השחקנים</li>
+                    <li>הקודקודים בצד השני: m החפצים</li>
+                    <li>יש צלע בין שחקן i לחפץ g אם x_{i,g} > 0</li>
+                    <li>משקל הצלע = x_{i,g}</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <svg width="500" height="300" viewBox="0 0 500 300">
+                    <!-- Students (left side) -->
+                    <circle cx="100" cy="60" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="65" text-anchor="middle" fill="white" font-weight="bold">א</text>
+                    
+                    <circle cx="100" cy="120" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="125" text-anchor="middle" fill="white" font-weight="bold">ב</text>
+                    
+                    <circle cx="100" cy="180" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="185" text-anchor="middle" fill="white" font-weight="bold">ג</text>
+                    
+                    <circle cx="100" cy="240" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="245" text-anchor="middle" fill="white" font-weight="bold">ד</text>
+                    
+                    <!-- Dorms (right side) -->
+                    <rect x="375" y="35" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="65" text-anchor="middle" fill="white" font-weight="bold">בקתה</text>
+                    
+                    <rect x="375" y="95" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="125" text-anchor="middle" fill="white" font-weight="bold">צריף</text>
+                    
+                    <rect x="375" y="155" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="185" text-anchor="middle" fill="white" font-weight="bold">וילה</text>
+                    
+                    <rect x="375" y="215" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="245" text-anchor="middle" fill="white" font-weight="bold">מרתף</text>
+                    
+                    <!-- Edges with weights -->
+                    <!-- Student א -->
+                    <line x1="125" y1="60" x2="375" y2="60" stroke="#e74c3c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="55" text-anchor="middle" font-weight="bold" fill="#e74c3c">0.7</text>
+                    
+                    <line x1="125" y1="60" x2="375" y2="120" stroke="#e74c3c" stroke-width="3" opacity="0.7"/>
+                    <text x="220" y="105" text-anchor="middle" font-weight="bold" fill="#e74c3c">0.3</text>
+                    
+                    <!-- Student ב -->
+                    <line x1="125" y1="120" x2="375" y2="180" stroke="#9b59b6" stroke-width="7" opacity="0.7"/>
+                    <text x="280" y="135" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.7</text>
+                    
+                    <line x1="125" y1="120" x2="375" y2="240" stroke="#9b59b6" stroke-width="3" opacity="0.7"/>
+                    <text x="280" y="195" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.3</text>
+                    
+                    <!-- Student ג -->
+                    <line x1="125" y1="180" x2="375" y2="60" stroke="#f39c12" stroke-width="3" opacity="0.7"/>
+                    <text x="220" y="145" text-anchor="middle" font-weight="bold" fill="#f39c12">0.3</text>
+                    
+                    <line x1="125" y1="180" x2="375" y2="180" stroke="#f39c12" stroke-width="3" opacity="0.7"/>
+                    <text x="250" y="175" text-anchor="middle" font-weight="bold" fill="#f39c12">0.3</text>
+                    
+                    <line x1="125" y1="180" x2="375" y2="240" stroke="#f39c12" stroke-width="4" opacity="0.7"/>
+                    <text x="220" y="225" text-anchor="middle" font-weight="bold" fill="#f39c12">0.4</text>
+                    
+                    <!-- Student ד -->
+                    <line x1="125" y1="240" x2="375" y2="120" stroke="#1abc9c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="195" text-anchor="middle" font-weight="bold" fill="#1abc9c">0.7</text>
+                    
+                    <line x1="125" y1="240" x2="375" y2="240" stroke="#1abc9c" stroke-width="3" opacity="0.7"/>
+                    <text x="250" y="235" text-anchor="middle" font-weight="bold" fill="#1abc9c">0.3</text>
+                </svg>
+            </div>
+            
+            <p><strong>תכונה מרכזית:</strong> גרף־הצריכה של מטריצת השמה אקראית הוא <strong>מאוזן</strong></p>
+            
+            <div class="definition">
+                <strong>גרף מאוזן:</strong> גרף שבו לכל קודקוד v, סכום המשקלים של הקשתות המחוברות ל-v הוא מספר קבוע (במקרה שלנו = 1)
+            </div>
+        </div>
+
+        <!-- Slide 15: Birkhoff Decomposition -->
+        <div class="slide">
+            <h2>פירוק בירקהוף (Birkhoff Decomposition)</h2>
+            
+            <div class="definition">
+                <strong>פירוק בירקהוף:</strong> של גרף G הוא סדרה של שידוכים מושלמים X₁,...,Xₖ וסדרה מקבילה של משקלים p₁,...,pₖ, כך שהמשקל של כל קשת e בגרף G שווה לסכום המשקלים של השידוכים המכילים את e
+            </div>
+            
+            <div class="theorem">
+                <strong>משפט:</strong> בכל גרף דו־צדדי מאוזן ולא ריק יש שידוך מושלם
+            </div>
+            
+            <div class="proof">
+                <strong>הוכחה:</strong> על פי משפט הנישואין של הול (Hall's marriage theorem)
+                <p>לכל קבוצה של k קודקודים באחד הצדדים, סכום המשקלים של הקשתות היוצאות מהן הוא k×w. כל קודקוד בצד השני תורם לכל היותר w, לכן חייבים להיות לפחות k שכנים.</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: Birkhoff Algorithm -->
+        <div class="slide">
+            <h2>אלגוריתם בירקהוף</h2>
+            
+            <div class="definition">
+                <strong>אלגוריתם בירקהוף:</strong>
+                <ol>
+                    <li>איתחול: j = 1</li>
+                    <li>מצא שידוך מושלם ב-G; סמן אותו ב-X_j</li>
+                    <li>מצא את המשקל הקטן ביותר של קשת בשידוך X_j; סמן אותו ב-p_j</li>
+                    <li>לכל קשת e בשידוך X_j: הפחת p_j מהמשקל של e. אם המשקל החדש = 0, מחק את e</li>
+                    <li>אם הגרף ריק, סיים; אחרת, הגדל את j ב-1 וחזור לצעד 2</li>
+                </ol>
+            </div>
+            
+            <div class="theorem">
+                <strong>משפט:</strong> האלגוריתם מוצא לכל גרף דו־צדדי מאוזן G, פירוק בירקהוף של G בזמן פולינומיאלי
+            </div>
+            
+            <p><strong>זמן ריצה:</strong> O(n²) סיבובים, בכל סיבוב חישוב שידוך מושלם בזמן פולינומיאלי</p>
+        </div>
+
+        <!-- Slide 17: Birkhoff Example -->
+        <div class="slide">
+            <h2>דוגמה לפירוק בירקהוף</h2>
+            
+            <p><strong>גרף התחלתי:</strong></p>
+            <div style="text-align: center; margin: 15px 0;">
+                <svg width="400" height="200" viewBox="0 0 400 200">
+                    <!-- Students (left) -->
+                    <circle cx="60" cy="40" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">א</text>
+                    
+                    <circle cx="60" cy="75" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ב</text>
+                    
+                    <circle cx="60" cy="110" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ג</text>
+                    
+                    <circle cx="60" cy="145" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ד</text>
+                    
+                    <!-- Dorms (right) -->
+                    <rect x="290" y="25" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="45" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ק</text>
+                    
+                    <rect x="290" y="60" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="80" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ץ</text>
+                    
+                    <rect x="290" y="95" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ו</text>
+                    
+                    <rect x="290" y="130" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="150" text-anchor="middle" fill="white" font-size="10" font-weight="bold">מ</text>
+                    
+                    <!-- Edges initial -->
+                    <line x1="75" y1="40" x2="290" y2="40" stroke="#e74c3c" stroke-width="5" opacity="0.8"/>
+                    <text x="180" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.7</text>
+                    <line x1="75" y1="40" x2="290" y2="75" stroke="#e74c3c" stroke-width="2" opacity="0.8"/>
+                    <text x="150" y="70" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.3</text>
+                    
+                    <line x1="75" y1="75" x2="290" y2="110" stroke="#9b59b6" stroke-width="5" opacity="0.8"/>
+                    <text x="200" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.7</text>
+                    <line x1="75" y1="75" x2="290" y2="145" stroke="#9b59b6" stroke-width="2" opacity="0.8"/>
+                    <text x="200" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.3</text>
+                    
+                    <line x1="75" y1="110" x2="290" y2="40" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
+                    <text x="150" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
+                    <line x1="75" y1="110" x2="290" y2="110" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
+                    <text x="180" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
+                    <line x1="75" y1="110" x2="290" y2="145" stroke="#f39c12" stroke-width="3" opacity="0.8"/>
+                    <text x="150" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.4</text>
+                    
+                    <line x1="75" y1="145" x2="290" y2="75" stroke="#1abc9c" stroke-width="5" opacity="0.8"/>
+                    <text x="180" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.7</text>
+                    <line x1="75" y1="145" x2="290" y2="145" stroke="#1abc9c" stroke-width="2" opacity="0.8"/>
+                    <text x="180" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.3</text>
+                </svg>
+            </div>
+            
+            <p><strong>סיבוב 1:</strong> השידוך א--צריף, ב--וילה, ג--בקתה, ד--מרתף</p>
+            <p>המשקל הקטן ביותר: p₁ = 0.3</p>
+            
+            <p><strong>אחרי סיבוב 1:</strong></p>
+            <div style="text-align: center; margin: 15px 0;">
+                <svg width="400" height="200" viewBox="0 0 400 200">
+                    <!-- Students (left) -->
+                    <circle cx="60" cy="40" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">א</text>
+                    
+                    <circle cx="60" cy="75" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ב</text>
+                    
+                    <circle cx="60" cy="110" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ג</text>
+                    
+                    <circle cx="60" cy="145" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ד</text>
+                    
+                    <!-- Dorms (right) -->
+                    <rect x="290" y="25" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="45" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ק</text>
+                    
+                    <rect x="290" y="60" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="80" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ץ</text>
+                    
+                    <rect x="290" y="95" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ו</text>
+                    
+                    <rect x="290" y="130" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="150" text-anchor="middle" fill="white" font-size="10" font-weight="bold">מ</text>
+                    
+                    <!-- Edges after round 1 -->
+                    <line x1="75" y1="40" x2="290" y2="40" stroke="#e74c3c" stroke-width="3" opacity="0.8"/>
+                    <text x="180" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.4</text>
+                    
+                    <line x1="75" y1="75" x2="290" y2="110" stroke="#9b59b6" stroke-width="3" opacity="0.8"/>
+                    <text x="200" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.4</text>
+                    
+                    <line x1="75" y1="110" x2="290" y2="110" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
+                    <text x="180" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
+                    <line x1="75" y1="110" x2="290" y2="145" stroke="#f39c12" stroke-width="1" opacity="0.8"/>
+                    <text x="150" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.1</text>
+                    
+                    <line x1="75" y1="145" x2="290" y2="75" stroke="#1abc9c" stroke-width="3" opacity="0.8"/>
+                    <text x="180" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.4</text>
+                </svg>
+            </div>
+            
+            <p><strong>סיבוב 2:</strong> השידוך א--בקתה, ב--וילה, ג--מרתף, ד--צריף</p>
+            <p>המשקל הקטן ביותר: p₂ = 0.4</p>
+            
+            <p><strong>אחרי סיבוב 2:</strong></p>
+            <div style="text-align: center; margin: 15px 0;">
+                <svg width="400" height="200" viewBox="0 0 400 200">
+                    <!-- Students (left) -->
+                    <circle cx="60" cy="40" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">א</text>
+                    
+                    <circle cx="60" cy="75" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ב</text>
+                    
+                    <circle cx="60" cy="110" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ג</text>
+                    
+                    <circle cx="60" cy="145" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+                    <text x="60" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ד</text>
+                    
+                    <!-- Dorms (right) -->
+                    <rect x="290" y="25" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="45" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ק</text>
+                    
+                    <rect x="290" y="60" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="80" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ץ</text>
+                    
+                    <rect x="290" y="95" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ו</text>
+                    
+                    <rect x="290" y="130" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
+                    <text x="305" y="150" text-anchor="middle" fill="white" font-size="10" font-weight="bold">מ</text>
+                    
+                    <!-- Edges after round 2 - only 0.3 edges remain -->
+                    <line x1="75" y1="75" x2="290" y2="145" stroke="#9b59b6" stroke-width="2" opacity="0.8"/>
+                    <text x="200" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.3</text>
+                    
+                    <line x1="75" y1="110" x2="290" y2="110" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
+                    <text x="180" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
+                    
+                    <line x1="75" y1="40" x2="290" y2="40" stroke="#e74c3c" stroke-width="2" opacity="0.8"/>
+                    <text x="180" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.3</text>
+                    
+                    <line x1="75" y1="145" x2="290" y2="75" stroke="#1abc9c" stroke-width="2" opacity="0.8"/>
+                    <text x="180" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.3</text>
+                </svg>
+            </div>
+            
+            <p><strong>סיבוב 3:</strong> השידוך א--בקתה, ב--מרתף, ג--וילה, ד--צריף</p>
+            <p>המשקל הקטן ביותר: p₃ = 0.3</p>
+            
+            <div class="formula">
+                ההגרלה הסופית:<br>
+                • בהסתברות 0.3: א--צריף, ב--וילה, ג--בקתה, ד--מרתף<br>
+                • בהסתברות 0.4: א--בקתה, ב--וילה, ג--מרתף, ד--צריף<br>
+                • בהסתברות 0.3: א--בקתה, ב--מרתף, ג--וילה, ד--צריף
+            </div>
+        </div>
+
+        <!-- Slide 18: Fair and Efficient Assignment -->
+        <div class="slide">
+            <h2>הגרלה הוגנת ויעילה לכתחילה</h2>
+            
+            <div class="definition">
+                <strong>אלגוריתם להשמה הוגנת ויעילה:</strong>
+                <ol>
+                    <li>מצא חלוקה שברית לקסימין־אגליטרית, עם אילוץ שסכום השברים של כל שחקן = 1</li>
+                    <li>בנה את גרף־הצריכה של החלוקה</li>
+                    <li>מצא פירוק־בירקהוף בעזרת אלגוריתם בירקהוף</li>
+                </ol>
+            </div>
+            
+            <div class="theorem">
+                <strong>מסקנה:</strong> ההגרלה המוחזרת היא:
+                <ul>
+                    <li>לקסימין־אגליטרית ← יעילה־לכתחילה</li>
+                    <li>פרופורציונלית־לכתחילה (אם ערכי השחקנים מנורמלים)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 19: Envy-Free Problem -->
+        <div class="slide">
+            <h2>הבעיה עם חוסר קנאה</h2>
+            
+            <p><strong>השאלה:</strong> האם ניתן להשיג השמה שהיא גם ללא־קנאה־לכתחילה?</p>
+            
+            <div class="example">
+                <strong>דוגמה נגדית:</strong> שני חפצים ושני שחקנים
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>בקתה</th>
+                        <th>צריף</th>
+                    </tr>
+                    <tr>
+                        <td><strong>עמי</strong></td>
+                        <td>6</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td><strong>תמי</strong></td>
+                        <td>12</td>
+                        <td>18</td>
+                    </tr>
+                </table>
+                
+                <p>ללא האילוץ של השמה: עמי מקבל 5/6 מהצריף ← חלוקה ללא קנאה</p>
+                <p>עם האילוץ של השמה: עמי מקבל את הצריף בהסתברות 1 ← תמי מקנאת!</p>
+            </div>
+            
+            <p><strong>פתרון היילנאנד-זקהאוסר:</strong> אלגוריתם מסובך, זמן ריצה לא פולינומיאלי, עדיין שאלה פתוחה</p>
+        </div>
+
+        <!-- Slide 20: Summary -->
+        <div class="slide">
+            <h1>סיכום</h1>
+            
+            <h2>העקרונות המרכזיים</h2>
+            <ul>
+                <li><strong>הוגנות לכתחילה vs בדיעבד:</strong> בדיעבד חזק יותר</li>
+                <li><strong>יעילות לכתחילה vs בדיעבד:</strong> לכתחילה חזק יותר!</li>
+                <li><strong>רדוקציה:</strong> חפצים בדידים → משאבים רציפים → הגרלה</li>
+            </ul>
+            
+            <h2>הישגים עיקריים</h2>
+            <ul>
+                <li>אלגוריתם ליצירת הגרלה יעילה לכתחילה</li>
+                <li>פירוק בירקהוף להשמות חוקיות</li>
+                <li>פתרון להשמה הוגנת ויעילה לכתחילה</li>
+            </ul>
+            
+            <h2>שאלות פתוחות</h2>
+            <ul>
+                <li>אלגוריתם פולינומיאלי להשמה ללא־קנאה־לכתחילה</li>
+                <li>הכללות לחלוקות מורכבות יותר</li>
+            </ul>
+            
+            <div class="quote">
+                סיכם: אראל סגל-הלוי
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <button class="nav-btn" onclick="previousSlide()">הקודם</button>
+        <span class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">20</span>
+        </span>
+        <button class="nav-btn" onclick="nextSlide()">הבא</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.querySelector('.nav-btn:first-child').disabled = currentSlide === 0;
+            document.querySelector('.nav-btn:last-child').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+        
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
