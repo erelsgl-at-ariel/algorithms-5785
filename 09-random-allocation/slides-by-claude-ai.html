@@ -630,55 +630,64 @@
             
             <p><strong>גרף התחלתי:</strong></p>
             <div style="text-align: center; margin: 15px 0;">
-                <svg width="400" height="200" viewBox="0 0 400 200">
-                    <!-- Students (left) -->
-                    <circle cx="60" cy="40" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">א</text>
+                <svg width="500" height="300" viewBox="0 0 500 300">
+                    <!-- Students (left side) -->
+                    <circle cx="100" cy="60" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="65" text-anchor="middle" fill="white" font-weight="bold">א</text>
                     
-                    <circle cx="60" cy="75" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ב</text>
+                    <circle cx="100" cy="120" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="125" text-anchor="middle" fill="white" font-weight="bold">ב</text>
                     
-                    <circle cx="60" cy="110" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ג</text>
+                    <circle cx="100" cy="180" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="185" text-anchor="middle" fill="white" font-weight="bold">ג</text>
                     
-                    <circle cx="60" cy="145" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ד</text>
+                    <circle cx="100" cy="240" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="245" text-anchor="middle" fill="white" font-weight="bold">ד</text>
                     
-                    <!-- Dorms (right) -->
-                    <rect x="290" y="25" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="45" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ק</text>
+                    <!-- Dorms (right side) -->
+                    <rect x="375" y="35" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="65" text-anchor="middle" fill="white" font-weight="bold">בקתה</text>
                     
-                    <rect x="290" y="60" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="80" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ץ</text>
+                    <rect x="375" y="95" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="125" text-anchor="middle" fill="white" font-weight="bold">צריף</text>
                     
-                    <rect x="290" y="95" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ו</text>
+                    <rect x="375" y="155" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="185" text-anchor="middle" fill="white" font-weight="bold">וילה</text>
                     
-                    <rect x="290" y="130" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="150" text-anchor="middle" fill="white" font-size="10" font-weight="bold">מ</text>
+                    <rect x="375" y="215" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="245" text-anchor="middle" fill="white" font-weight="bold">מרתף</text>
                     
-                    <!-- Edges initial -->
-                    <line x1="75" y1="40" x2="290" y2="40" stroke="#e74c3c" stroke-width="5" opacity="0.8"/>
-                    <text x="180" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.7</text>
-                    <line x1="75" y1="40" x2="290" y2="75" stroke="#e74c3c" stroke-width="2" opacity="0.8"/>
-                    <text x="150" y="70" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.3</text>
+                    <!-- Edges with weights -->
+                    <!-- Student א -->
+                    <line x1="125" y1="60" x2="375" y2="60" stroke="#e74c3c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="55" text-anchor="middle" font-weight="bold" fill="#e74c3c">0.7</text>
                     
-                    <line x1="75" y1="75" x2="290" y2="110" stroke="#9b59b6" stroke-width="5" opacity="0.8"/>
-                    <text x="200" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.7</text>
-                    <line x1="75" y1="75" x2="290" y2="145" stroke="#9b59b6" stroke-width="2" opacity="0.8"/>
-                    <text x="200" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.3</text>
+                    <line x1="125" y1="60" x2="375" y2="120" stroke="#e74c3c" stroke-width="3" opacity="0.7"/>
+                    <text x="220" y="105" text-anchor="middle" font-weight="bold" fill="#e74c3c">0.3</text>
                     
-                    <line x1="75" y1="110" x2="290" y2="40" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
-                    <text x="150" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
-                    <line x1="75" y1="110" x2="290" y2="110" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
-                    <text x="180" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
-                    <line x1="75" y1="110" x2="290" y2="145" stroke="#f39c12" stroke-width="3" opacity="0.8"/>
-                    <text x="150" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.4</text>
+                    <!-- Student ב -->
+                    <line x1="125" y1="120" x2="375" y2="180" stroke="#9b59b6" stroke-width="7" opacity="0.7"/>
+                    <text x="280" y="135" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.7</text>
                     
-                    <line x1="75" y1="145" x2="290" y2="75" stroke="#1abc9c" stroke-width="5" opacity="0.8"/>
-                    <text x="180" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.7</text>
-                    <line x1="75" y1="145" x2="290" y2="145" stroke="#1abc9c" stroke-width="2" opacity="0.8"/>
-                    <text x="180" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.3</text>
+                    <line x1="125" y1="120" x2="375" y2="240" stroke="#9b59b6" stroke-width="3" opacity="0.7"/>
+                    <text x="280" y="195" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.3</text>
+                    
+                    <!-- Student ג -->
+                    <line x1="125" y1="180" x2="375" y2="60" stroke="#f39c12" stroke-width="3" opacity="0.7"/>
+                    <text x="220" y="145" text-anchor="middle" font-weight="bold" fill="#f39c12">0.3</text>
+                    
+                    <line x1="125" y1="180" x2="375" y2="180" stroke="#f39c12" stroke-width="3" opacity="0.7"/>
+                    <text x="250" y="175" text-anchor="middle" font-weight="bold" fill="#f39c12">0.3</text>
+                    
+                    <line x1="125" y1="180" x2="375" y2="240" stroke="#f39c12" stroke-width="4" opacity="0.7"/>
+                    <text x="220" y="225" text-anchor="middle" font-weight="bold" fill="#f39c12">0.4</text>
+                    
+                    <!-- Student ד -->
+                    <line x1="125" y1="240" x2="375" y2="120" stroke="#1abc9c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="195" text-anchor="middle" font-weight="bold" fill="#1abc9c">0.7</text>
+                    
+                    <line x1="125" y1="240" x2="375" y2="240" stroke="#1abc9c" stroke-width="3" opacity="0.7"/>
+                    <text x="250" y="235" text-anchor="middle" font-weight="bold" fill="#1abc9c">0.3</text>
                 </svg>
             </div>
             
@@ -687,47 +696,56 @@
             
             <p><strong>אחרי סיבוב 1:</strong></p>
             <div style="text-align: center; margin: 15px 0;">
-                <svg width="400" height="200" viewBox="0 0 400 200">
-                    <!-- Students (left) -->
-                    <circle cx="60" cy="40" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">א</text>
+                <svg width="500" height="300" viewBox="0 0 500 300">
+                    <!-- Students (left side) -->
+                    <circle cx="100" cy="60" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="65" text-anchor="middle" fill="white" font-weight="bold">א</text>
                     
-                    <circle cx="60" cy="75" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ב</text>
+                    <circle cx="100" cy="120" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="125" text-anchor="middle" fill="white" font-weight="bold">ב</text>
                     
-                    <circle cx="60" cy="110" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ג</text>
+                    <circle cx="100" cy="180" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="185" text-anchor="middle" fill="white" font-weight="bold">ג</text>
                     
-                    <circle cx="60" cy="145" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ד</text>
+                    <circle cx="100" cy="240" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="245" text-anchor="middle" fill="white" font-weight="bold">ד</text>
                     
-                    <!-- Dorms (right) -->
-                    <rect x="290" y="25" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="45" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ק</text>
+                    <!-- Dorms (right side) -->
+                    <rect x="375" y="35" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="65" text-anchor="middle" fill="white" font-weight="bold">בקתה</text>
                     
-                    <rect x="290" y="60" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="80" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ץ</text>
+                    <rect x="375" y="95" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="125" text-anchor="middle" fill="white" font-weight="bold">צריף</text>
                     
-                    <rect x="290" y="95" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ו</text>
+                    <rect x="375" y="155" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="185" text-anchor="middle" fill="white" font-weight="bold">וילה</text>
                     
-                    <rect x="290" y="130" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="150" text-anchor="middle" fill="white" font-size="10" font-weight="bold">מ</text>
+                    <rect x="375" y="215" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="245" text-anchor="middle" fill="white" font-weight="bold">מרתף</text>
                     
-                    <!-- Edges after round 1 -->
-                    <line x1="75" y1="40" x2="290" y2="40" stroke="#e74c3c" stroke-width="3" opacity="0.8"/>
-                    <text x="180" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.4</text>
+                    <!-- Edges with weights -->
+                    <!-- Student א -->
+                    <line x1="125" y1="60" x2="375" y2="60" stroke="#e74c3c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="55" text-anchor="middle" font-weight="bold" fill="#e74c3c">0.7</text>
                     
-                    <line x1="75" y1="75" x2="290" y2="110" stroke="#9b59b6" stroke-width="3" opacity="0.8"/>
-                    <text x="200" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.4</text>
+                  
+                    <!-- Student ב -->
+                    <line x1="125" y1="120" x2="375" y2="180" stroke="#9b59b6" stroke-width="7" opacity="0.7"/>
+                    <text x="280" y="135" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.4</text>
                     
-                    <line x1="75" y1="110" x2="290" y2="110" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
-                    <text x="180" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
-                    <line x1="75" y1="110" x2="290" y2="145" stroke="#f39c12" stroke-width="1" opacity="0.8"/>
-                    <text x="150" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.1</text>
+                    <line x1="125" y1="120" x2="375" y2="240" stroke="#9b59b6" stroke-width="3" opacity="0.7"/>
+                    <text x="280" y="195" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.3</text>
                     
-                    <line x1="75" y1="145" x2="290" y2="75" stroke="#1abc9c" stroke-width="3" opacity="0.8"/>
-                    <text x="180" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.4</text>
+                    <!-- Student ג -->
+                    <line x1="125" y1="180" x2="375" y2="180" stroke="#f39c12" stroke-width="3" opacity="0.7"/>
+                    <text x="250" y="175" text-anchor="middle" font-weight="bold" fill="#f39c12">0.3</text>
+                    
+                    <line x1="125" y1="180" x2="375" y2="240" stroke="#f39c12" stroke-width="4" opacity="0.7"/>
+                    <text x="220" y="225" text-anchor="middle" font-weight="bold" fill="#f39c12">0.4</text>
+                    
+                    <!-- Student ד -->
+                    <line x1="125" y1="240" x2="375" y2="120" stroke="#1abc9c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="195" text-anchor="middle" font-weight="bold" fill="#1abc9c">0.7</text>
                 </svg>
             </div>
             
@@ -736,45 +754,50 @@
             
             <p><strong>אחרי סיבוב 2:</strong></p>
             <div style="text-align: center; margin: 15px 0;">
-                <svg width="400" height="200" viewBox="0 0 400 200">
-                    <!-- Students (left) -->
-                    <circle cx="60" cy="40" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">א</text>
+                <svg width="500" height="300" viewBox="0 0 500 300">
+                    <!-- Students (left side) -->
+                    <circle cx="100" cy="60" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="65" text-anchor="middle" fill="white" font-weight="bold">א</text>
                     
-                    <circle cx="60" cy="75" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ב</text>
+                    <circle cx="100" cy="120" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="125" text-anchor="middle" fill="white" font-weight="bold">ב</text>
                     
-                    <circle cx="60" cy="110" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ג</text>
+                    <circle cx="100" cy="180" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="185" text-anchor="middle" fill="white" font-weight="bold">ג</text>
                     
-                    <circle cx="60" cy="145" r="15" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
-                    <text x="60" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ד</text>
+                    <circle cx="100" cy="240" r="25" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+                    <text x="100" y="245" text-anchor="middle" fill="white" font-weight="bold">ד</text>
                     
-                    <!-- Dorms (right) -->
-                    <rect x="290" y="25" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="45" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ק</text>
+                    <!-- Dorms (right side) -->
+                    <rect x="375" y="35" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="65" text-anchor="middle" fill="white" font-weight="bold">בקתה</text>
                     
-                    <rect x="290" y="60" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="80" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ץ</text>
+                    <rect x="375" y="95" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="125" text-anchor="middle" fill="white" font-weight="bold">צריף</text>
                     
-                    <rect x="290" y="95" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ו</text>
+                    <rect x="375" y="155" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="185" text-anchor="middle" fill="white" font-weight="bold">וילה</text>
                     
-                    <rect x="290" y="130" width="30" height="30" fill="#2ecc71" stroke="#27ae60" stroke-width="1"/>
-                    <text x="305" y="150" text-anchor="middle" fill="white" font-size="10" font-weight="bold">מ</text>
+                    <rect x="375" y="215" width="50" height="50" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    <text x="400" y="245" text-anchor="middle" fill="white" font-weight="bold">מרתף</text>
                     
-                    <!-- Edges after round 2 - only 0.3 edges remain -->
-                    <line x1="75" y1="75" x2="290" y2="145" stroke="#9b59b6" stroke-width="2" opacity="0.8"/>
-                    <text x="200" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#9b59b6">0.3</text>
+                    <!-- Edges with weights -->
+                    <!-- Student א -->
+                    <line x1="125" y1="60" x2="375" y2="60" stroke="#e74c3c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="55" text-anchor="middle" font-weight="bold" fill="#e74c3c">0.3</text>
                     
-                    <line x1="75" y1="110" x2="290" y2="110" stroke="#f39c12" stroke-width="2" opacity="0.8"/>
-                    <text x="180" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#f39c12">0.3</text>
+                  
+                    <!-- Student ב -->
+                    <line x1="125" y1="120" x2="375" y2="240" stroke="#9b59b6" stroke-width="3" opacity="0.7"/>
+                    <text x="280" y="195" text-anchor="middle" font-weight="bold" fill="#9b59b6">0.3</text>
                     
-                    <line x1="75" y1="40" x2="290" y2="40" stroke="#e74c3c" stroke-width="2" opacity="0.8"/>
-                    <text x="180" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">0.3</text>
+                    <!-- Student ג -->
+                    <line x1="125" y1="180" x2="375" y2="180" stroke="#f39c12" stroke-width="3" opacity="0.7"/>
+                    <text x="250" y="175" text-anchor="middle" font-weight="bold" fill="#f39c12">0.3</text>
                     
-                    <line x1="75" y1="145" x2="290" y2="75" stroke="#1abc9c" stroke-width="2" opacity="0.8"/>
-                    <text x="180" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="#1abc9c">0.3</text>
+                    <!-- Student ד -->
+                    <line x1="125" y1="240" x2="375" y2="120" stroke="#1abc9c" stroke-width="7" opacity="0.7"/>
+                    <text x="250" y="195" text-anchor="middle" font-weight="bold" fill="#1abc9c">0.3</text>
                 </svg>
             </div>
             
