@@ -16,7 +16,7 @@ a, b, c, d = allocations
 
 # There are 5 citizens. Their preferences are: ab, ac, ad, bc, a. The total budget is 500 - 100 for each citizen
 donations = [100, 100, 100, 100, 100]
-utilities = [a+b, a+c, a+d, b+c, a]
+utilities = [b, a+c, a+d, b+c, a]
 # utilities = [b+d, a+c, a+d, b+c, a]
 # utilities = [b, a+c, a+d, b+c, a]
 
