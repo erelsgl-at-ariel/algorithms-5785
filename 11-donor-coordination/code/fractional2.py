@@ -1,5 +1,3 @@
-#!python3
-
 """
 Demonstration of the fractional-budgeting algorithm maximizing the product of utilities.
 
